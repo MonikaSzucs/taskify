@@ -15,6 +15,8 @@ type Props = {
 // we will use a library called react-icons
 //npm install react-icons
 const SingleTodo = ({todo, todos, setTodos}:Props) => {
+    // keep track is edit mode is on or not
+    // the value you added it to
 
     const handleDone = (id:number) => {
         setTodos(
@@ -22,6 +24,10 @@ const SingleTodo = ({todo, todos, setTodos}:Props) => {
                 todo.id ===id?{...todo, isDone: !todo.isDone} : todo
             )
         );
+    }
+
+    const handleDelete = (id:number) => {
+        setTodos(todos.filter((todo) => todo.id != id));
     }
 
   return (
@@ -37,7 +43,7 @@ const SingleTodo = ({todo, todos, setTodos}:Props) => {
             <span className="icon">
                 <AiFillEdit/>
             </span>
-            <span className="icon">
+            <span className="icon" onClick={()=>handleDelete(todo.id)}>
                 <AiFillDelete/>
             </span>
             <span className="icon" onClick={()=>handleDone(todo.id)}>
