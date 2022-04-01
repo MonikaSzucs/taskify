@@ -2,13 +2,14 @@ import React from 'react';
 import './styles.css';
 
 interface Props{
-    todo: string | number;
-    setTodo: React.Dispatch<React.SetStateAction<string | number>>;
+    todo: string;
+    setTodo: React.Dispatch<React.SetStateAction<string>>;
+    handleAdd:(e: React.FormEvent)=> void;
 }
 
-const InputFeild = ({todo, setTodo}: Props) => {
+const InputFeild = ({todo, setTodo, handleAdd}: Props) => {
   return (
-    <form className='input'>
+    <form className='input' onSubmit={handleAdd}>
       <input value={todo} 
         type='input' 
         onChange={
