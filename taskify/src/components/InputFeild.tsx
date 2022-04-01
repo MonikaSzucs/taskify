@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import './styles.css';
 
 interface Props{
@@ -8,9 +8,19 @@ interface Props{
 }
 
 const InputFeild = ({todo, setTodo, handleAdd}: Props) => {
+  // useRef is like using document.getElmentby ID or ClassName
+  const inputRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
+
+
   return (
-    <form className='input' onSubmit={handleAdd}>
-      <input value={todo} 
+    <form className='input' onSubmit={(e) => {
+        handleAdd(e);
+        // the ? means its not sure if there will be a value or not added inside of the useRef
+        inputRef.current?.blur();
+      }}>
+      <input 
+        ref={inputRef}
+        value={todo} 
         type='input' 
         onChange={
             (e)=>setTodo(e.target.value)

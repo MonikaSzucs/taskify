@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import InputFeild from './components/InputFeild';
 import { Todo } from "./model";
+import TodoList from './components/TodoList';
 
 // FC is a functional component
 const App: React.FC = () => {
@@ -31,6 +32,8 @@ const App: React.FC = () => {
     <div className="App">
       <span className="heading">Taskify</span>
       <InputFeild todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
+      <TodoList todos={todos} setTodos={setTodos}/> 
+      
     </div>
   );
 }
